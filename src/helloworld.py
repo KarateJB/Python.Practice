@@ -14,7 +14,10 @@ list.append("Leia")
 list.append("Hachi")
 #list.remove("Hachi")
 #list.reverse()
-list.sort()
+#list.sort()
+
+del list[2]
+
 for value in list:
     print("Name : " + value)
 
