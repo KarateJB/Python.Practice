@@ -3,15 +3,32 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>{% block title %}django-sample-project{% endblock %}</title>
+    <title>{% block title %}django-sample{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <!-- <div style="font-size:1.5em">
-      {% block header %}django-sample-project{% endblock %}
+      
     </div> -->
-    <div style="background-color:lightyellow">
-        {% block content %} {% endblock %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Powered by Django</li>
+    </ol>
+    <div class="jumbotron">
+        <h1 class="display-3">{% block header %}{% endblock %}</h1>
+        <p class="lead">
+            {% block content %} {% endblock %}
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#!" role="button">Home</a>
+            </p>
     </div>
 </body>
 
