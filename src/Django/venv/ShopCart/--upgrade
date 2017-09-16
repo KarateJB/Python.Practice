@@ -1,0 +1,4 @@
+Config variable 'Py_DEBUG' is unset, Python ABI tag may be incorrect
+Config variable 'WITH_PYMALLOC' is unset, Python ABI tag may be incorrect
+Requirement already satisfied: pip in c:\users\ppipp\appdata\local\programs\python\python36-32\lib\site-packages
+Cleaning up...

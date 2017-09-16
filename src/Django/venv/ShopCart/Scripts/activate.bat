@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=D:\Works\Source Control\GitHub\KarateJB\Python.Practice\src\Django\venv\ShopCart"
+set "VIRTUAL_ENV=C:\Users\ppipp\Downloads\Github\Python.Practice\src\Django\venv\ShopCart"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"
@@ -30,3 +30,4 @@ if defined _OLD_VIRTUAL_PATH (
 set "PATH=%VIRTUAL_ENV%\Scripts;%PATH%"
 
 :END
+
