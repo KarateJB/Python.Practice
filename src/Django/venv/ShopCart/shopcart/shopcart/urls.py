@@ -17,6 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from app.views import home
 
+# handler404 = 'app.views.http404'
+# handler500 = 'app.views.http500'
+
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^admin/', admin.site.urls),
