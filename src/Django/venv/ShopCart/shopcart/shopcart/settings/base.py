@@ -30,6 +30,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # Application definition
 
 INSTALLED_APPS = [
+    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,11 +73,26 @@ WSGI_APPLICATION = 'shopcart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'sqlserver_ado',
+        'HOST':'10.7.1.120',
+        'NAME': 'Shopcart',
+        'USER':'shopcart',
+        'PASSWORD':'shopcart',
+        'PORT':'1433',
+        'OPTIONS':{
+            'provider':'SQLOLEDB',
+            # 'extra_params':'DataTypeCompatibility=80;MARS Connection=True'
+        }
+    },
 }
 
 

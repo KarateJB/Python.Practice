@@ -1,4 +1,4 @@
-#!d:\works\source control\github\karatejb\python.practice\src\django\venv\shopcart\scripts\python.exe
+#!C:\Users\ppipp\Downloads\Github\Python.Practice\src\django\venv\ShopCart\scripts\python.exe
 from django.core import management
 
 if __name__ == "__main__":
