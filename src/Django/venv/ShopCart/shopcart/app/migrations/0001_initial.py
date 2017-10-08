@@ -4,6 +4,36 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 
 
+# Initialize ProductTypes
+def initProdustTypes(apps, schema_editor):
+    ptModel = apps.get_model("app", "ProductType") #apps.get_model(app_label, model_name, require_ready=True)
+    ptDataBook = ptModel(Id=1, Name='Book')
+    ptDataBook.save()
+    ptDataClothes = ptModel(Id=2, Name='Clothes')
+    ptDataClothes.save()
+    ptDataToy = ptModel(Id=3, Name='Toy')
+    ptDataToy.save()
+    
+
+# Remove all records in ProductTypes
+def removeProductTypes(apps, schema_editor):
+    ptModel = apps.get_model("app", "ProductType") #apps.get_model(app_label, model_name, require_ready=True)
+    ptModel.objects.all().delete()
+
+
+def initProdustTypesSql():
+    
+    sql = """
+      INSERT INTO ProductTypes VALUES(1, 'Book');
+      INSERT INTO ProductTypes VALUES(2, 'Clothes');
+      INSERT INTO ProductTypes VALUES(3, 'Toy');
+    """
+    return sql
+
+def removeProductTypesSql():
+    return 'DELETE from ProductTypes'    
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -36,4 +66,6 @@ class Migration(migrations.Migration):
             name='ProdTypeId',
             field=models.ForeignKey(db_column='ProdTypeId', related_name='Products_ProductTypes', to='app.ProductType'),
         ),
+        migrations.RunPython(initProdustTypes,removeProductTypes)
+        # migrations.RunSQL(initProdustTypesSql(), removeProductTypesSql())
     ]
