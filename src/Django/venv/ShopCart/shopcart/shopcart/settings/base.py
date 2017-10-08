@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'shopcart.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'sqlserver_ado',
-        'HOST':'10.7.1.120',
+        'HOST':'LEIASKYWALKER\\SQLEXPRESS',
         'NAME': 'Shopcart',
         'USER':'shopcart',
         'PASSWORD':'shopcart',
-        'PORT':'1433',
+        #'PORT':'1433',
         'OPTIONS':{
             'provider':'SQLOLEDB',
             # 'extra_params':'DataTypeCompatibility=80;MARS Connection=True'
