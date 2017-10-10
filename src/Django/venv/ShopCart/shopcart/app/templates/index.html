@@ -7,4 +7,23 @@
 
 Welcome to django!
 
+
+
+<table class="table">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Owner</th>
+    </thead>
+    <tbody>
+        {% for car in Cars %}
+        <tr>
+            <td>{{ car.Id }}</td>
+            <td>{{ car.Name }}</td>
+            <td>{{ car.Owner }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}
