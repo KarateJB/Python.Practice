@@ -32,12 +32,12 @@
         <div class="topMenu" v-show="isShowMenu">
             <ul>
                 <li>
-                    <a class="nav-item nav-link">
+                    <a class="nav-item nav-link" href="{% url 'home' %}">
                                     <i class="fa fa-file-powerpoint-o"></i>Home
                                 </a>
                 </li>
                 <li>
-                    <a class="nav-item nav-link">
+                    <a class="nav-item nav-link" href="{% url 'productList' prodtype='books' %}">
                                     <i class="fa fa-heart"></i>Go shopping
                                 </a>
                 </li>
@@ -47,11 +47,9 @@
 
     <br /><br />
     <div class="jumbotron">
-        <h1 class="display-3">{% block header %}{% endblock %}</h1>
+        <h3>{% block header %}{% endblock %}</h3>
         <p class="lead">
             {% block content %} {% endblock %}
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Home</a>
             </p>
     </div>
 
