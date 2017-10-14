@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from app.views import home
+from django.conf import settings
+from django.conf.urls.static import static
+from app.views import home, productList
 
 # handler404 = 'app.views.http404'
 # handler500 = 'app.views.http500'
 
 urlpatterns = [
     url(r'^$', home, name='home'),
+    url(r'^product/(?P<prodtype>\w+)/$', productList, name='productList'),
+    # url(r'^product/(?:(?P<prodtype>\w+)/)?$', productList, name='productList'), #With default prod='books'
     url(r'^admin/', admin.site.urls),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

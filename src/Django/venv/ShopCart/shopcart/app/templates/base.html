@@ -13,15 +13,39 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
         crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.js"></script>
+
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/app.css" %}">
+
+
 </head>
 
 <body>
-    <!-- <div style="font-size:1.5em">
-      
-    </div> -->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item active">Powered by Django</li>
-    </ol>
+
+    <div id="app" style="position: fixed;left: 0;top: 0;">
+        <div class="menuBtn" v-on:click="isShowMenu=!isShowMenu">
+            <span>Menu</span>
+        </div>
+        <div class="topMenu" v-show="isShowMenu">
+            <ul>
+                <li>
+                    <a class="nav-item nav-link">
+                                    <i class="fa fa-file-powerpoint-o"></i>Home
+                                </a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link">
+                                    <i class="fa fa-heart"></i>Go shopping
+                                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <br /><br />
     <div class="jumbotron">
         <h1 class="display-3">{% block header %}{% endblock %}</h1>
         <p class="lead">
@@ -30,6 +54,14 @@
                 <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Home</a>
             </p>
     </div>
+
+
+    <footer class="fixed-bottom">
+            Powered by Django
+        </footer>
+
+    <script src="{% static "scripts/app/components/base.js" %}"></script>
+
 </body>
 
 </html>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block header %}HOME{% endblock %}
+
+{% block content %}
+
+<table class="table">
+    <thead>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Price</th>
+    </thead>
+    <tbody>
+        {% for prod in Prods %}
+        <tr>
+            <td>{{ prod.Id }}</td>
+            <td>{{ prod.Title }}</td>
+            <td>{{ prod.Price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
