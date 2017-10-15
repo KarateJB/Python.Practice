@@ -5,7 +5,7 @@ from django.db import models
 
 class Product(models.Model):
 
-    Id = models.IntegerField(primary_key=True)
+    Id = models.AutoField(primary_key=True)
     Price = models.IntegerField(null=False)
     Title = models.CharField(max_length=100, null=False)
     ProdTypeId = models.ForeignKey('ProductType', db_column='ProdTypeId', related_name='Products_ProductTypes')
@@ -19,7 +19,7 @@ class Product(models.Model):
 
 class ProductType(models.Model):
 
-    Id = models.IntegerField(primary_key=True)
+    Id = models.AutoField(primary_key=True)
     Name = models.CharField(max_length=50, null=False)
 
     def __str__(self):

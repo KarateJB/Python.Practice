@@ -3,14 +3,15 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 
+
 # Initialize ProductTypes
 def initProdustTypes(apps, schema_editor):
     ptModel = apps.get_model("app", "ProductType") #apps.get_model(app_label, model_name, require_ready=True)
-    ptDataBook = ptModel(Name='Book')
+    ptDataBook = ptModel(Id=1, Name='Book')
     ptDataBook.save()
-    ptDataClothes = ptModel(Name='Clothes')
+    ptDataClothes = ptModel(Id=2, Name='Clothes')
     ptDataClothes.save()
-    ptDataToy = ptModel(Name='Toy')
+    ptDataToy = ptModel(Id=3, Name='Toy')
     ptDataToy.save()
     
 
@@ -23,9 +24,9 @@ def removeProductTypes(apps, schema_editor):
 def initProdustTypesSql():
     
     sql = """
-      INSERT INTO ProductTypes(Name) VALUES('Book');
-      INSERT INTO ProductTypes(Name) VALUES('Clothes');
-      INSERT INTO ProductTypes(Name) VALUES('Toy');
+      INSERT INTO ProductTypes VALUES(1, 'Book');
+      INSERT INTO ProductTypes VALUES(2, 'Clothes');
+      INSERT INTO ProductTypes VALUES(3, 'Toy');
     """
     return sql
 
@@ -42,7 +43,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Product',
             fields=[
-                ('Id', models.AutoField(primary_key=True, serialize=False)),
+                ('Id', models.IntegerField(primary_key=True, serialize=False)),
                 ('Price', models.IntegerField()),
                 ('Title', models.CharField(max_length=100)),
             ],
@@ -53,7 +54,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProductType',
             fields=[
-                ('Id', models.AutoField(primary_key=True, serialize=False)),
+                ('Id', models.IntegerField(primary_key=True, serialize=False)),
                 ('Name', models.CharField(max_length=50)),
             ],
             options={

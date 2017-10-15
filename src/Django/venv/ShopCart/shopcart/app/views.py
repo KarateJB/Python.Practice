@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from enum import Enum
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from share.enum import ProductTypeEnum
@@ -23,7 +24,7 @@ def productList(request, prodtype):
 
     prods = []
 
-    if prodtype.lower() == "books":
+    if prodtype.lower() == "book":
         book1 = {'Id': 1, 'Title': 'Learn Python', 'Price': 50}
         book2 = {'Id': 2, 'Title': 'Design Pattern', 'Owner': 45}
         book3 = {'Id': 3, 'Title': 'ASP.NET Core', 'Owner': 39}
@@ -49,7 +50,6 @@ def productList(request, prodtype):
 def productCreate(request):
     form = ProductForm(request.POST or None)
     if request.method == 'POST':
-        print('POST')
         
         # create a form instance and populate it with data from the request:
         # form = ProductForm(request.POST)
@@ -57,12 +57,12 @@ def productCreate(request):
         if form.is_valid():
             entity = form.save(commit=False)
             entity.save()
-            prodtypeEnum = ProductTypeEnum(form.cleaned_data["prodTypeId"])
-            return HttpResponseRedirect(reverse('productList', args=(prodtypeEnum.name)))
+            prodtypeStr=str(form.cleaned_data["ProdTypeId"])
+            prodtypeEnum = ProductTypeEnum[prodtypeStr]
+            return HttpResponseRedirect(reverse('productList', args=[prodtypeEnum.name.lower()]))
         else:
             pass
     else:
-        print('GET')        
         form = ProductForm()
     
     return render(request, 'product-create.html', {'form': form})
