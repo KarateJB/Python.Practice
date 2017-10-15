@@ -1,8 +1,8 @@
 from enum import Enum
 
 class ProductTypeEnum(Enum):
-     Book = 1
-     Clothes = 2
-     Toy = 3
+     book = 1
+     clothes = 2
+     toy = 3
 
 

@@ -7,7 +7,8 @@
 
 <div>
     <input type="button" class="btn btn-success" value="Create" onclick="location.href='{% url 'productCreate' %}'" /> 
-<table class="table">
+
+    <table class="table">
     <thead>
         <th>Id</th>
         <th>Title</th>
@@ -20,10 +21,17 @@
             <td>{{ prod.Id }}</td>
             <td>{{ prod.Title }}</td>
             <td>{{ prod.Price }}</td>
-            <td><button class="btn btn-warning">Remove</button></td>
+            <td>
+              <form action="{% url 'productRemove' %} " method="post">
+                {% csrf_token %}
+                <input type="hidden" name="Id" value="{{ prod.Id }}" />
+                <input type="submit" class="btn btn-warning" value="Remove" />
+              </form>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
 </div>
 {% endblock %}

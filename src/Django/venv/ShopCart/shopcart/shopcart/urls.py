@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from app.views import home, productList, productCreate
+from app.views import home, productList, productCreate, productRemove
 
 # handler404 = 'app.views.http404'
 # handler500 = 'app.views.http500'
@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^product/(?P<prodtype>\w+)/$', productList, name='productList'),
     url(r'^product/create$', productCreate, name='productCreate'),
+    url(r'^product/remove$', productRemove, name='productRemove'),
     url(r'^admin/', admin.site.urls),
 ]
