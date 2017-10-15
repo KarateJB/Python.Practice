@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from share.enum import ProductTypeEnum
 
 from app.forms.productForm import ProductForm
 # Create your views here.
@@ -46,17 +47,22 @@ def productList(request, prodtype):
 
 
 def productCreate(request):
+    form = ProductForm(request.POST or None)
     if request.method == 'POST':
+        print('POST')
+        
         # create a form instance and populate it with data from the request:
-        form = ProductForm(request.POST)
+        # form = ProductForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             entity = form.save(commit=False)
             entity.save()
-            return HttpResponseRedirect(reverse('productList', args=('books')))
+            prodtypeEnum = ProductTypeEnum(form.cleaned_data["prodTypeId"])
+            return HttpResponseRedirect(reverse('productList', args=(prodtypeEnum.name)))
         else:
             pass
     else:
+        print('GET')        
         form = ProductForm()
-
+    
     return render(request, 'product-create.html', {'form': form})
