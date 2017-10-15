@@ -27,4 +27,4 @@ urlpatterns = [
     url(r'^product/(?P<prodtype>\w+)/$', productList, name='productList'),
     url(r'^product/create$', productCreate, name='productCreate'),
     url(r'^admin/', admin.site.urls),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]

@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
+from app.forms.productForm import ProductForm
 # Create your views here.
 
 
@@ -19,28 +22,41 @@ def productList(request, prodtype):
 
     prods = []
 
-    if prodtype.lower()=="books":
-        book1 = {'Id':1, 'Title': 'Learn Python', 'Price': 50}
-        book2 = {'Id':2, 'Title': 'Design Pattern', 'Owner': 45}
-        book3 = {'Id':3, 'Title': 'ASP.NET Core', 'Owner': 39}
+    if prodtype.lower() == "books":
+        book1 = {'Id': 1, 'Title': 'Learn Python', 'Price': 50}
+        book2 = {'Id': 2, 'Title': 'Design Pattern', 'Owner': 45}
+        book3 = {'Id': 3, 'Title': 'ASP.NET Core', 'Owner': 39}
         prods.append(book1)
         prods.append(book2)
         prods.append(book3)
-    elif  prodtype.lower()=="clothes":
-        clt1 = {'Id':4, 'Title': 'Jacket', 'Price': 120}
-        clt2 = {'Id':5, 'Title': 'T-shirt', 'Price': 15}
-        clt3 = {'Id':6, 'Title': 'Skirt', 'Price': 30}
+    elif prodtype.lower() == "clothes":
+        clt1 = {'Id': 4, 'Title': 'Jacket', 'Price': 120}
+        clt2 = {'Id': 5, 'Title': 'T-shirt', 'Price': 15}
+        clt3 = {'Id': 6, 'Title': 'Skirt', 'Price': 30}
         prods.append(clt1)
         prods.append(clt2)
         prods.append(clt3)
     else:
-        prods =[]
+        prods = []
         # elif prodtype.lower=="toys":
 
-    context = {'Prods': prods }
+    context = {'Prods': prods}
 
     return render(request, 'product-list.html', context)
 
 
 def productCreate(request):
-    return render(request, 'product-create.html')
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ProductForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            entity = form.save(commit=False)
+            entity.save()
+            return HttpResponseRedirect(reverse('productList', args=('books')))
+        else:
+            pass
+    else:
+        form = ProductForm()
+
+    return render(request, 'product-create.html', {'form': form})

@@ -1,19 +1,28 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block header %}Products{% endblock %}
+{% block header %}Products{% endblock %} 
 
 {% block content %}
 
 <form>
     <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title" class="form-control">
+        <lable for="prodTypeId"></lable>
+        <select id="prodTypeId" name="prodTypeId" class="custom-select mb-2 mr-sm-2 mb-sm-0">
+                {% for prodtype in form.prodTypeId.field.queryset %}
+                    <option value="{{ prodtype.Id }}">{{ prodtype.Name }}</option>
+                {% endfor %}
+            </select>
     </div>
     <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" id="price" name="price" class="form-control">
-        </div>
-    <input type="submit" class="form-control" value="submit" />
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" class="form-control">
+        <p style="color:red">{{ field.errors }}</p>
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price" name="price" class="form-control">
+    </div>
+    <input type="submit" class="form-control" value="Save" />
 </form>
 
 {% endblock %}
