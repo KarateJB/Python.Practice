@@ -40,3 +40,7 @@ def productList(request, prodtype):
     context = {'Prods': prods }
 
     return render(request, 'product-list.html', context)
+
+
+def productCreate(request):
+    return render(request, 'product-create.html')

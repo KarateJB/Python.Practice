@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from app.views import home, productList
+from app.views import home, productList, productCreate
 
 # handler404 = 'app.views.http404'
 # handler500 = 'app.views.http500'
@@ -25,6 +25,6 @@ from app.views import home, productList
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^product/(?P<prodtype>\w+)/$', productList, name='productList'),
-    # url(r'^product/(?:(?P<prodtype>\w+)/)?$', productList, name='productList'), #With default prod='books'
+    url(r'^product/create$', productCreate, name='productCreate'),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -5,11 +5,14 @@
 
 {% block content %}
 
+<div>
+    <input type="button" class="btn btn-success" value="Create" onclick="location.href='{% url 'productCreate' %}'" /> 
 <table class="table">
     <thead>
         <th>Id</th>
         <th>Title</th>
         <th>Price</th>
+        <th></th>
     </thead>
     <tbody>
         {% for prod in Prods %}
@@ -17,9 +20,10 @@
             <td>{{ prod.Id }}</td>
             <td>{{ prod.Title }}</td>
             <td>{{ prod.Price }}</td>
+            <td><button class="btn btn-warning">Remove</button></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
+</div>
 {% endblock %}
