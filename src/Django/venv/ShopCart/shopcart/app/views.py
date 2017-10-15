@@ -63,7 +63,6 @@ def productCreate(request):
 def productRemove(request):
 
     prodtypeEnum = ProductTypeEnum.book # Default
-    print('Remove')
 
     if request.method == 'POST':
         prodId = request.POST.get("Id", 0)

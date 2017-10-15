@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<div>
+<div id="prodapp">
     <input type="button" class="btn btn-success" value="Create" onclick="location.href='{% url 'productCreate' %}'" /> 
 
     <table class="table">
@@ -25,7 +25,7 @@
               <form action="{% url 'productRemove' %} " method="post">
                 {% csrf_token %}
                 <input type="hidden" name="Id" value="{{ prod.Id }}" />
-                <input type="submit" class="btn btn-warning" value="Remove" />
+                <input type="button" class="btn btn-warning" value="Remove" />
               </form>
             </td>
         </tr>
@@ -34,4 +34,10 @@
 </table>
 
 </div>
+
+{% load static %}
+<script src="{% static "scripts/app/components/product-list.js" %}"></script>
+
 {% endblock %}
+
+
