@@ -8,7 +8,7 @@ class Product(models.Model):
     Id = models.AutoField(primary_key=True)
     Price = models.IntegerField(null=False)
     Title = models.CharField(max_length=100, null=False)
-    ProdTypeId = models.ForeignKey('ProductType', db_column='ProdTypeId', related_name='Products_ProductTypes')
+    ProdType = models.ForeignKey('ProductType', db_column='ProdType', related_name='Products_ProductTypes')
 
     def __str__(self):
         return self.Title

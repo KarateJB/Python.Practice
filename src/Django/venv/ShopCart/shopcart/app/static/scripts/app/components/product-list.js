@@ -17,7 +17,7 @@ var prodapp = new Vue({
                 cancelButtonClass: 'btn btn-danger',
             }).then(function () {
 
-                // refs.removeForm.submit(); //Submit
+                refs.removeForm.submit(); //Submit
 
             }, function (dismiss) {
 

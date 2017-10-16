@@ -27,7 +27,7 @@ def productList(request, prodtype):
     print('ProdType=' + prodtype)
 
     prodtypeEnum = ProductTypeEnum[prodtype]
-    prods = Product.objects.filter(ProdTypeId=prodtypeEnum.value)
+    prods = Product.objects.filter(ProdType=prodtypeEnum.value)
     # book1 = {'Id': 1, 'Title': 'Learn Python', 'Price': 50}
     # book2 = {'Id': 2, 'Title': 'Design Pattern', 'Owner': 45}
     # prods.append(book1)
@@ -48,7 +48,7 @@ def productCreate(request):
         if form.is_valid():
             entity = form.save(commit=False)
             entity.save()
-            prodtypeStr = str(form.cleaned_data["ProdTypeId"].Name.lower())
+            prodtypeStr = str(form.cleaned_data["ProdType"].Name.lower())
             print(prodtypeStr)
             prodtypeEnum = ProductTypeEnum[prodtypeStr]
             return HttpResponseRedirect(reverse('productList', args=[prodtypeEnum.name.lower()]))
@@ -68,7 +68,7 @@ def productRemove(request):
         prodId = request.POST.get("Id", 0)
         entity = Product.objects.filter(Id=prodId).first()
         if entity is not None:
-            prodtypeEnum = ProductTypeEnum[entity.ProdTypeId.Name.lower()]
+            prodtypeEnum = ProductTypeEnum[entity.ProdType.Name.lower()]
             entity.delete()
     else:
         pass

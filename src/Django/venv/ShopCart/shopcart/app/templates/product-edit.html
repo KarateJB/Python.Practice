@@ -1,6 +1,6 @@
 {% extends "base.html" %} 
 
-{% block header %}Product-create{% endblock %} 
+{% block header %}Product-edit{% endblock %} 
 
 {% block content %}
 
@@ -17,20 +17,24 @@
     {% endif %}
 
     <div class="form-group">
-        <lable for="ProdType"></lable>
-        <select id="ProdType" name="ProdType" class="custom-select mb-2 mr-sm-2 mb-sm-0">
-                {% for prodtype in form.ProdType.field.queryset %}
+        <lable for="ProdTypeId"></lable>
+        <select id="ProdTypeId" name="ProdTypeId" class="custom-select mb-2 mr-sm-2 mb-sm-0">
+                {% for prodtype in form.ProdTypeId.field.queryset %}
+                  {% if Prod.ProdType.Id==prodtype.Id %} 
+                    <option value="{{ prodtype.Id }}" selected>{{ prodtype.Name }}</option>
+                  {% else %}  
                     <option value="{{ prodtype.Id }}">{{ prodtype.Name }}</option>
+                  {% endif %}  
                 {% endfor %}
             </select>
     </div>
     <div class="form-group">
         <label for="Title">Title</label>
-        <input type="text" id="Title" name="Title" class="form-control">
+        <input type="text" id="Title" name="Title" class="form-control" value="{{ Prod.Title }}">
     </div>
     <div class="form-group">
         <label for="Price">Price</label>
-        <input type="number" id="Price" name="Price" class="form-control">
+        <input type="number" id="Price" name="Price" class="form-control" value="{{ Prod.Price }}">
     </div>
     <input type="submit" class="form-control" value="Save" />
 </form>

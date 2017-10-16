@@ -62,8 +62,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='product',
-            name='ProdTypeId',
-            field=models.ForeignKey(db_column='ProdTypeId', related_name='Products_ProductTypes', to='app.ProductType'),
+            name='ProdType',
+            field=models.ForeignKey(db_column='ProdType', related_name='Products_ProductTypes', to='app.ProductType'),
         ),
         migrations.RunPython(initProdustTypes,removeProductTypes)
         # migrations.RunSQL(initProdustTypesSql(), removeProductTypesSql())
