@@ -22,10 +22,11 @@
             <td>{{ prod.Title }}</td>
             <td>{{ prod.Price }}</td>
             <td>
-              <form action="{% url 'productRemove' %} " method="post" ref="removeForm">
+              <form action="{% url 'productRemove' %} " method="post" ref="removeForm{{ prod.Id }}">
                 {% csrf_token %}
                 <input type="hidden" name="Id" value="{{ prod.Id }}" />
-                <input type="button" class="btn btn-warning" value="Remove" v-on:click="confirmRemove('{{ prod.Title }}')" />
+                <input type="button" class="btn btn-success" value="Edit" onclick="location.href='{% url 'productEdit' prodId=prod.Id %}'" />
+                <input type="button" class="btn btn-warning" value="Remove" v-on:click="confirmRemove({{ prod.Id }},'{{ prod.Title }}')" />
               </form>
             </td>
         </tr>

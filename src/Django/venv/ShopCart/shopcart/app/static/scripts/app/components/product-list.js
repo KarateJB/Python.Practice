@@ -3,7 +3,7 @@ var prodapp = new Vue({
     data: {
     },
     methods: {
-        confirmRemove: function (title) {
+        confirmRemove: function (id, title) {
             var refs = this.$refs;
 
             swal({
@@ -16,8 +16,9 @@ var prodapp = new Vue({
                 confirmButtonClass: 'btn btn-success',
                 cancelButtonClass: 'btn btn-danger',
             }).then(function () {
-
-                refs.removeForm.submit(); //Submit
+                let form = "removeForm" + id.toString();
+                console.log('form=' + form)
+                refs[form].submit(); //Submit
 
             }, function (dismiss) {
 

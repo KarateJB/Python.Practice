@@ -35,13 +35,23 @@
             <ul>
                 <li>
                     <a class="nav-item nav-link" href="{% url 'home' %}">
-                                    <i class="fa fa-file-powerpoint-o"></i>Home
-                                </a>
+                        <i class="fa fa-file-powerpoint-o"></i>Home
+                    </a>
                 </li>
                 <li>
                     <a class="nav-item nav-link" href="{% url 'productList' prodtype='book' %}">
-                                    <i class="fa fa-heart"></i>Go shopping
-                                </a>
+                        <i class="fa fa-heart"></i>Buy books
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="{% url 'productList' prodtype='clothes' %}">
+                        <i class="fa fa-heart"></i>Buy clothes
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="{% url 'productList' prodtype='toy' %}">
+                        <i class="fa fa-heart"></i>Buy toys
+                    </a>
                 </li>
             </ul>
         </div>
