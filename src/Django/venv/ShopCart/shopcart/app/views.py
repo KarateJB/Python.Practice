@@ -5,7 +5,7 @@ from app.models import Product
 from share.enum import ProductTypeEnum
 
 from app.forms.productForm import ProductForm
-from app.forms.productEditForm import ProductEditForm
+
 # Create your views here.
 
 #region Home
@@ -44,11 +44,9 @@ def productList(request, prodtype):
 
 #region Product: Create
 def productCreate(request):
+    # create a form instance and populate it with data from the request:
     form = ProductForm(request.POST or None)
     if request.method == 'POST':
-
-        # create a form instance and populate it with data from the request:
-        # form = ProductForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             entity = form.save(commit=False)

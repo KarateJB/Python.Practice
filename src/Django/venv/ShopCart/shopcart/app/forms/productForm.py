@@ -9,5 +9,6 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('Id', 'ProdType', 'Title' , 'Price')
+        fields = ['Id', 'ProdType', 'Title' , 'Price']
+        # exclude = ['Id']
     

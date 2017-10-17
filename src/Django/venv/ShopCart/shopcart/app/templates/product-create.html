@@ -4,8 +4,7 @@
 
 {% block content %}
 
-<form method="post" autocomplete="off">
-    {% csrf_token %} 
+<form method="post" autocomplete="off">{% csrf_token %} 
     {% if form.errors %}
         {% for field in form %}
             {% for error in field.errors %}
