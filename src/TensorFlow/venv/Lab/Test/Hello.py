@@ -1,4 +1,5 @@
 import tensorflow as tf
 hello = tf.constant('Hello, TensorFlow!')
-sess = tf.Session()
-print(sess.run(hello).decode("utf-8"))
+with tf.Session() as sess:
+    result=sess.run(hello)
+    print(result.decode("utf-8"))
