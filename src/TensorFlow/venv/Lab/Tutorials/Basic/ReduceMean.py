@@ -1,4 +1,4 @@
-# See https://www.tensorflow.org/api_docs/python/tf/reduce_mean (資料降維)
+# See https://www.tensorflow.org/api_docs/python/tf/reduce_mean
 import tensorflow as tf
 
 x = tf.constant([[2., 3.], [4., 1.]])

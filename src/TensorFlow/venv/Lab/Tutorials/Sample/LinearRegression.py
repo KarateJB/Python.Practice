@@ -26,7 +26,8 @@ y = W * train_X + b
 # https://en.wikipedia.org/wiki/Minimum_mean_square_error
 # http://allenluadvance.blogspot.tw/2014/01/sine-wave-estimation-mmse-estimator-ml.html
 # https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/more-on-regression/v/proof-part-1-minimizing-squared-error-to-regression-line
-loss = tf.reduce_mean(tf.square(y - train_Y))
+loss = tf.reduce_sum(tf.pow(y-train_Y, 2))/train_X.shape[0]
+# loss = tf.reduce_mean(tf.square(y - train_Y)) # Or use reduce_mean
 optimizer = tf.train.GradientDescentOptimizer(learning_rate)
 train = optimizer.minimize(loss)
 
