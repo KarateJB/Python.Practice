@@ -5,16 +5,18 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 
-# a = np.arange(-10,11,1)
+X = tf.placeholder(tf.float32)
 
 with tf.name_scope('Sigmoid'):
-    tf.summary.scalar('Loss', loss)
-    
+    fx = tf.sigmoid(X)
+    tf.summary.scalar("f(x)", tf.squeeze(fx))
+
 init = tf.global_variables_initializer()
 # Start training
 with tf.Session() as sess:
-    
+
     # Output graph
+    merged = tf.summary.merge_all()
     writer = tf.summary.FileWriter("log/Sigmoid/", graph = sess.graph)
     
     # Run the initializer
@@ -22,7 +24,11 @@ with tf.Session() as sess:
  
     for step in range(-10,10):
         a = tf.convert_to_tensor(step, dtype=tf.float32)
-        # a = tf.random_uniform([1,1], minval=1.0, maxval=3.0, seed=step)
-        stepStr = str(step + 1) + '.'
-        print(stepStr, sess.run(tf.constant(step)), sess.run(tf.sigmoid(a)))
+        a_r = sess.run([a])
+        print(sess.run(a), sess.run(fx, feed_dict={X: a_r}))
+
+        sess.run(fx, feed_dict={X: a_r})
+        summary = sess.run(merged, feed_dict={X: sess.run([a])})
+        writer.add_summary(summary, step)
+            
 
