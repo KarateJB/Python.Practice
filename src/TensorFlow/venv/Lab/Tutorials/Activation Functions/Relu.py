@@ -1,4 +1,4 @@
-"""Sigmoid
+"""Relu
 """
 
 import tensorflow as tf
@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 
 X = tf.placeholder(tf.float32)
 
-with tf.name_scope('Sigmoid'):
-    fx = tf.sigmoid(X)
+with tf.name_scope('Relu'):
+    fx = tf.nn.relu(X)
     tf.summary.scalar("f(x)", tf.squeeze(fx))
 
 init = tf.global_variables_initializer()
@@ -17,7 +17,7 @@ with tf.Session() as sess:
 
     # Output graph
     merged = tf.summary.merge_all()
-    writer = tf.summary.FileWriter("log/Sigmoid/", graph = sess.graph)
+    writer = tf.summary.FileWriter("log/Relu/", graph = sess.graph)
     
     # Run the initializer
     sess.run(init)
@@ -36,4 +36,4 @@ with tf.Session() as sess:
 #     for step in range(-10,11):
 #         X = tf.convert_to_tensor(step, dtype=tf.float32)
 #         # X = tf.random_uniform([1,1], minval=1.0, maxval=3.0, seed=step) //Or use random number
-#         print(sess.run(X), sess.run(tf.sigmoid(X)))
+#         print(sess.run(X), sess.run(tf.nn.relu(X)))
