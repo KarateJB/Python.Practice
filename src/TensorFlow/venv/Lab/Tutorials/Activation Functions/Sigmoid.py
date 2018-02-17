@@ -12,7 +12,7 @@ with tf.name_scope('Sigmoid'):
     tf.summary.scalar("f(x)", tf.squeeze(fx))
 
 init = tf.global_variables_initializer()
-# Start training
+
 with tf.Session() as sess:
 
     # Output graph
@@ -30,5 +30,10 @@ with tf.Session() as sess:
         sess.run(fx, feed_dict={X: a_r})
         summary = sess.run(merged, feed_dict={X: sess.run([a])})
         writer.add_summary(summary, step)
-            
 
+# with tf.Session() as sess:
+    
+#     for step in range(-10,10):
+#         X = tf.convert_to_tensor(step, dtype=tf.float32)
+#         # X = tf.random_uniform([1,1], minval=1.0, maxval=3.0, seed=step) //Or use random number
+#         print(sess.run(X), sess.run(tf.sigmoid(X)))
