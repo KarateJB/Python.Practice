@@ -14,7 +14,7 @@ scale = tf.Variable(tf.ones([1]))
 epsilon = 0.001
 Wx_plus_b = tf.nn.batch_normalization(X, fc_mean, fc_var, shift, scale, epsilon)
 
-# ema = tf.train.ExponentialMovingAverage(decay=0.5)  # exponential moving average 的 decay 度
+# ema = tf.train.ExponentialMovingAverage(decay=0.5)
 # def mean_var_with_update():
 #     ema_apply_op = ema.apply([fc_mean, fc_var])
 #     with tf.control_dependencies([ema_apply_op]):
