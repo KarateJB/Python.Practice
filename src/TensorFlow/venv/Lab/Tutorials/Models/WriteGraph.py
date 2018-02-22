@@ -25,7 +25,7 @@ with tf.Session() as sess:
     tf.train.write_graph(graph, graph_dir,'graph.pb', as_text=False)
 
 
-# Load graph file
+# Restore graph file
 with tf.Session() as sess:
     # with open(os.path.join(graph_dir,'graph.pb'), 'rb') as f:
     with tf.gfile.FastGFile(os.path.join(graph_dir,'graph.pb'),'rb') as f:
