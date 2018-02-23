@@ -20,8 +20,13 @@ fg = data + 1
 
 with tf.Session() as sess:
     # sess.run(enqueue_op, feed_dict={dummy_input: [10.,20.,30.]})
-    sess.run(enqueue_op)
-    for i in range(0,3):
-        sess.run(fg)
+    run_option = tf.RunOptions(timeout_in_ms=5000)
+    try:
+        # sess.run(enqueue_op, feed_dict={dummy_input: [10.,20.,30.]}, options=run_option)
+        sess.run(enqueue_op, options=run_option)
+        for i in range(0,3):
+            sess.run(fg, options=run_option)
+    except tf.errors.DeadlineExceededError:
+        print('Out of range')
     
     
