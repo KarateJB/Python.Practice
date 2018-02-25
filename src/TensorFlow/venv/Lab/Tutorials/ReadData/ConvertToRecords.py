@@ -29,7 +29,7 @@ def main(unused_argv):
 
     # Convert data to tf.train,Example and write into TFRecords file
     convert_to(data_sets.train, 'train')
-    convert_to(data_sets.valiation, 'validation')
+    convert_to(data_sets.validation, 'validation')
     convert_to(data_sets.test, 'test')
 
 
