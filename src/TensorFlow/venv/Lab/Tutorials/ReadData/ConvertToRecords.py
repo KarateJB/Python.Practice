@@ -74,17 +74,14 @@ if __name__ == '__main__':
     parser.add_argument(
         '--directory',
         type=str,
-        default='/tmp/data',
+        default='tmp/data',
         help='Directory to download data files and write the converted result'
     )
     parser.add_argument(
         '--validation_size',
         type=int,
-        default=100,
-        help="""\
-      Number of examples to separate from the training data for the validation
-      set.\
-      """
+        default=1000,
+        help='Number of examples to separate from the training data for the validation set.'
     )
 
     FLAGS, unparsed = parser.parse_known_args()
