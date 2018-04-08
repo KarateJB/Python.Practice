@@ -2,7 +2,7 @@
 argparse — Parser for command-line options, arguments and sub-commands
 See
 https://docs.python.org/3/library/argparse.html
-https://mkaz.tech/code/python-argparse-cookbook/
+https://mkaz.blog/code/python-argparse-cookbook/
 """
 
 import argparse
