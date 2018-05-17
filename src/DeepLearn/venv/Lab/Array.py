@@ -11,7 +11,9 @@ arr4 = np.array([7,8])
 
 # 矩陣乘積
 # print(np.dot(arr1,arr2)) 
-print(np.dot(arr3,arr4))
+print(np.dot(arr3,arr4)) 
+
+print(1*7+2*7)
 
 
 # print(arr1*arr2)
