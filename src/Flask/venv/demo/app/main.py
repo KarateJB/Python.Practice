@@ -2,8 +2,19 @@ from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, send, emit
 import json
 
+# Global variables
+SERVER_ADDR = "http://localhost:5000" # default Server ip/port (local)
 
-app = Flask(__name__, template_folder='./templates')
+
+class CustomFlask(Flask):
+    jinja_options = Flask.jinja_options.copy()
+    jinja_options.update(dict(
+        variable_start_string='%%',  # Default is '{{' but Vue.js uses '{{' / '}}'
+        variable_end_string='%%', # Default is '}}' but Vue.js uses '{{' / '}}'
+    ))
+
+app = CustomFlask(__name__, template_folder='./templates')
+# app = Flask(__name__, template_folder='./templates')
 
 # Websocket setting
 app.config['SECRET_KEY'] = '12qwaszx'
@@ -11,7 +22,10 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html', async_mode=socketio.async_mode)    
+    # For jquery + Socket.IO client
+    # return render_template('index.html', async_mode=socketio.async_mode)    
+    # For Vuejs + Vue-SocketIO 
+    return render_template('index_vue.html', async_mode=socketio.async_mode, server_addr=SERVER_ADDR)        
 
 @app.route('/send', methods=['GET', 'POST'])
 def send():
