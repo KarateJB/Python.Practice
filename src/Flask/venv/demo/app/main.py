@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, send, emit
 from modules.logger_config import init_logging
+# from models.user import *
+# from models.product import *
+# from models.order import *
+from modules.utils import json2obj
 import modules.sqlalchemy_config as sqlalchemy_config
 import json
 import logging
@@ -22,13 +26,15 @@ app = CustomFlask(__name__, template_folder='./templates')
 # app = Flask(__name__, template_folder='./templates')
 app.debug = True
 
-# migrate = None
-# Initilize db instance
+# Initilize db 
 with app.app_context():
     db = sqlalchemy_config.db = sqlalchemy_config.init_db()
-    from models import user, product, order
-    migrate = sqlalchemy_config.migrate_db(app, db)
-
+    
+from models import user, product, order
+from models.user import *
+from models.product import *
+from models.order import *
+migrate = sqlalchemy_config.migrate_db(app, db)
 
 
 # Logging setting
@@ -47,7 +53,7 @@ app.config['SECRET_KEY'] = '12qwaszx'
 socketio = SocketIO(app)
 
 
-@app.route('/')
+@app.route("/")
 def index():
     # For jquery + Socket.IO client
     # return render_template('index.html', async_mode=socketio.async_mode)
@@ -55,7 +61,18 @@ def index():
     return render_template('index_vue.html', async_mode=socketio.async_mode, server_addr=SERVER_ADDR)
 
 
-@app.route('/send', methods=['GET', 'POST'])
+@app.route("/create-user", methods=["POST"])
+def create_user():
+    # entity = json.dumps(request.json)
+    entity = request.json
+    print(entity)
+    user = User(**entity)
+    User.create(user)
+    return "", 200
+
+
+
+@app.route("/send", methods=['GET', 'POST'])
 def send():
     """Receive a message and brodcast to all connected clients
     """
@@ -63,7 +80,7 @@ def send():
     flask_logger.debug("Received: {0}".format(jsonobj_content))
     socketio.emit('server_response',  {
                   'data': str(jsonobj_content)}, broadcast=True)
-    return '', 200
+    return "", 200
 
 
 # @app.route('/<string:page_name>/')
