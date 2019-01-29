@@ -22,11 +22,13 @@ app = CustomFlask(__name__, template_folder='./templates')
 # app = Flask(__name__, template_folder='./templates')
 app.debug = True
 
-
+# migrate = None
 # Initilize db instance
 with app.app_context():
-    sqlalchemy_config.init_db()
-    sqlalchemy_config.migrate_db()
+    db = sqlalchemy_config.db = sqlalchemy_config.init_db()
+    from models import user, product, order
+    migrate = sqlalchemy_config.migrate_db(app, db)
+
 
 
 # Logging setting

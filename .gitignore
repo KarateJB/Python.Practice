@@ -22,6 +22,7 @@ scripts/
 sdist/
 var/
 include/
+migrations/
 wheels/
 *.egg-info/
 .installed.cfg
