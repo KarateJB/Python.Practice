@@ -11,9 +11,6 @@ class User(db.Model):
         self.name = name
         self.phone = phone
 
-    def find_by_id(cls, id):
-        return cls.filter_by(id == id).first()
-
     def create(self):
         db.session.add(self)
         db.session.commit()

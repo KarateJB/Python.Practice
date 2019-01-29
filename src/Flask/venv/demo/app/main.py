@@ -1,10 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, send, emit
 from modules.logger_config import init_logging
-# from models.user import *
-# from models.product import *
-# from models.order import *
-from modules.utils import json2obj
 import modules.sqlalchemy_config as sqlalchemy_config
 import json
 import logging
@@ -63,14 +59,28 @@ def index():
 
 @app.route("/create-user", methods=["POST"])
 def create_user():
-    # entity = json.dumps(request.json)
-    entity = request.json
-    print(entity)
-    user = User(**entity)
-    User.create(user)
-    return "", 200
+    json_obj = request.json
+    entity = User(**json_obj)
+    User.create(entity)
+    return "", 201
 
+@app.route("/update-user", methods=["POST"])
+def update_user():
+    json_obj = request.json
+    id = json_obj["id"]
+    entity = User.query.filter_by(id=id).first()
+    entity.name = json_obj["name"]
+    entity.phone = json_obj["phone"]
+    User.update(entity)
+    return "", 200    
 
+@app.route("/delete-user", methods=["DELETE"])
+def delete_user():
+    json_obj = request.json
+    id = json_obj["id"]
+    entity = User.query.filter_by(id=id).first()
+    User.delete(entity)
+    return "", 200    
 
 @app.route("/send", methods=['GET', 'POST'])
 def send():
