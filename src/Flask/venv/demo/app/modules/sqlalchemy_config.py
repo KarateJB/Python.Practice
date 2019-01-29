@@ -1,5 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask import current_app as app
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 
@@ -11,6 +12,10 @@ def init_db():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # silence the deprecation warning
     db = SQLAlchemy()
     db.init_app(app)
+
+
+def migrate_db():
+    Migrate(app, db)      
 
 
 

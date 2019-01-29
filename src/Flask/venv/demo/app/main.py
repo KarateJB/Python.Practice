@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, send, emit
-from flask_sqlalchemy import SQLAlchemy
 from modules.logger_config import init_logging
 import modules.sqlalchemy_config as sqlalchemy_config
 import json
@@ -27,6 +26,7 @@ app.debug = True
 # Initilize db instance
 with app.app_context():
     sqlalchemy_config.init_db()
+    sqlalchemy_config.migrate_db()
 
 
 # Logging setting
@@ -38,18 +38,6 @@ if(app.debug == False):  # When not in development env
 else:  # When in local env
     init_logging(app.logger, logging.DEBUG)
     init_logging(flask_logger, logging.DEBUG)
-
-
-flask_logger.debug("[Debug]..")
-flask_logger.info("[INFO]...")
-flask_logger.warning("[WARNING]...")
-flask_logger.error("[ERROR]...")
-flask_logger.critical("[CRITICAL]...")
-
-
-
-
-
 
 
 # Websocket setting
