@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, send, emit
 from modules.logger_config import init_logging
+import modules.config as config
 import modules.sqlalchemy_config as sqlalchemy_config
 import json
 import logging
@@ -20,7 +21,8 @@ class CustomFlask(Flask):
 
 app = CustomFlask(__name__, template_folder='./templates')
 # app = Flask(__name__, template_folder='./templates')
-app.debug = True
+app.config.from_object(config.TestConfig)
+
 
 # Initilize db 
 with app.app_context():
