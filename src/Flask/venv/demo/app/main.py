@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, send, emit
-from modules.logger_config import init_logging
+from modules.logger_module import init_logging
 import modules.config as config
-import modules.sqlalchemy_config as sqlalchemy_config
+import modules.sqlalchemy_module as sqlalchemy_config
 import json
 import logging
 

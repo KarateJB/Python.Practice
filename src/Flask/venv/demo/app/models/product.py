@@ -1,4 +1,4 @@
-from modules.sqlalchemy_config import db
+from modules.sqlalchemy_module import db
 
 class Product(db.Model):
     __tablename__ = "products"

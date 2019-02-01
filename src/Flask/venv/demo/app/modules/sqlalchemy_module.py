@@ -18,3 +18,5 @@ def init_db():
 def migrate_db(app, db):
     migrate = Migrate(app, db)
     return migrate
+
+
