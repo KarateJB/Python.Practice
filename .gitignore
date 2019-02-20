@@ -105,3 +105,6 @@ site-packages/
 
 # mypy
 .mypy_cache/
+
+# IDE
+.vscode/
